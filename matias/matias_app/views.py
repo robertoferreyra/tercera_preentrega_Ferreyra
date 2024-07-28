@@ -8,13 +8,10 @@ def inicio(request):
     return render(request, "matias_app/index.html")
 
 def cursos(request):
-    return HttpResponse("Vista cursos")
-
+    return render(request, "matias_app/cursos.html")
 def profesores(request):
-    return HttpResponse("Vista profesores")
-
+    return render(request, "matias_app/profesores.html")
 def estudiantes(request):
-    return HttpResponse("Vista estudiantes")
-
+    return render(request, "matias_app/estudiantes.html")
 def entregables(request):
-    return HttpResponse("Vista entregables")
+    return render(request, "matias_app/entregables.html")
