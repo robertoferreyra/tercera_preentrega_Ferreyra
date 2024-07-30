@@ -11,16 +11,15 @@ def inicio(request):
     return render(request, "matias_app/index.html")
 
 def cursos(request):
-    return HttpResponse("Vista cursos")
+    return render(request, "matias_app/cursos.html")
 
 def profesores(request):
-    return HttpResponse("Vista profesores")
+    return render(request, "matias_app/profesores.html")
 
 def estudiantes(request):
-    return HttpResponse("Vista estudiantes")
-
+    return render(request, "matias_app/estudiantes.html")
 def entregables(request):
-    return HttpResponse("Vista entregables")
+    return render(request, "matias_app/entregables.html")
 
 def curso_formulario(request):
 
@@ -63,3 +62,21 @@ def buscar_form_con_api(request):
         mi_formulario = BuscaCursoForm()
 
     return render(request, "matias_app/buscar_form_con_api.html", {"mi_formulario": mi_formulario})
+
+
+def estudiante1(request):
+
+    if request.method == "POST":
+
+            miFormulario = Estudiantes(request.POST) # Aqui me llega la informacion del html
+            print(miFormulario)
+
+            if miFormulario.is_valid:
+                informacion = miFormulario.cleaned_data
+                nombre = Nombre(nombre=informacion["nombre"], apellido=informacion["apellido"], email=informacion["email"])
+                curso.save()
+                return render(request, "matias_app/inicio.html")
+    else:
+        miFormulario = Estudiantes()
+
+    return render(request, "matias_app/estudiante1.html", {"miFormulario": miFormulario})

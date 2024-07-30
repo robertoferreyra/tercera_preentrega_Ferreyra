@@ -6,3 +6,8 @@ class CursoFormulario(forms.Form):
 
 class BuscaCursoForm(forms.Form):
     curso = forms.CharField()    
+
+class Estudiante(forms.Form):
+    nombre = forms.CharField(max_length=40)
+    apellido = forms.CharField(max_length=20)
+    email = forms.EmailField(max_length=40)
