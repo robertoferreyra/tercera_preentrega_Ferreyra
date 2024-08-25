@@ -2,15 +2,15 @@
 
 {% load static %}
 
-{% block title %} Formulario - Agregar Curso {% endblock title %}
+{% block title %} Formulario con API {% endblock title %}
 
 {% block main %}
-
-    <form action="/curso-formulario/" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
-        <p>Curso: <input type="text" name="curso"></p>
-        <p>Camada: <input type="text" name="camada"></p>
-
+        
+        <table>
+            {{ mi_formulario.as_table }}
+        </table>
         <input type="submit" value="Enviar">
 
     </form>
