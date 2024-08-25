@@ -3,9 +3,9 @@
 # Create your views here.
 from django.shortcuts import render
 from django.http import HttpResponse
-from matias_app.models import Curso
-from matias_app.forms import CursoFormulario
-from matias_app.forms import BuscaCursoForm , Estudiante, Profesor
+from matias_app.models import Curso , Estudiante , Profesor , Entregable
+from matias_app.forms import CursoFormulario, Estudiantes , Profesores, Entregables
+from matias_app.forms import BuscaCursoForm 
 
 def inicio(request):
     return render(request, "matias_app/index.html")
@@ -13,20 +13,18 @@ def inicio(request):
 
 def profesores(request):
     if request.method == "POST":
-        mi_formulario = Profesor(request.POST) 
+        mi_formulario = Profesores(request.POST) 
         if mi_formulario.is_valid():
             informacion = mi_formulario.cleaned_data
             
-            profesores = Profesor(nombre=informacion["nombre"], apellido=informacion["apellido"], email=informacion["email"], materia=informacion["materia"])
+            profesores = Profesor(nombre=informacion["nombre"], apellido=informacion["apellido"], email=informacion["email"])
             profesores.save()
 
             return render(request, "matias_app/index.html")
     else:
-        mi_formulario = Profesor()
+        mi_formulario = Profesores()
 
     return render(request, "matias_app/profesores.html", {"mi_formulario": mi_formulario})
-
-
 
 
 def cursos(request):
@@ -48,15 +46,15 @@ def cursos(request):
 
 def estudiantes(request):
     if request.method == "POST":
-        mi_formulario = Estudiante(request.POST) 
-        if mi_formulario.is_valid:
+        mi_formulario = Estudiantes(request.POST) 
+        if mi_formulario.is_valid():
             informacion = mi_formulario.cleaned_data
             
             estudiantes = Estudiante(nombre=informacion["nombre"], apellido=informacion["apellido"], email=informacion["email"])
             estudiantes.save()
             return render(request, "matias_app/index.html")
     else:
-        mi_formulario = Estudiante()
+        mi_formulario = Estudiantes()
 
     return render(request, "matias_app/estudiantes.html", {"mi_formulario": mi_formulario})
 
